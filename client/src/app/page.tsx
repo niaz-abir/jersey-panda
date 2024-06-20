@@ -1,7 +1,15 @@
+import Footer from "@/components/Footer";
+import Testimonial from "@/components/Testimonial";
+import Banner from "@/components/banner";
+import Jersey from "@/components/jersey";
+
 export default function Home() {
   return (
     <div>
-      <h1>Jersey Panda!</h1>
+      <Banner />
+      <Jersey />
+      <Testimonial />
+      <Footer />
     </div>
   );
 }
