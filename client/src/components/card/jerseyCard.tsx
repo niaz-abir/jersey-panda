@@ -10,7 +10,7 @@ const JerseyCard = ({ jersey }) => {
   return (
     <div>
       <div className="bg-[#1c1c22] mb-8  border-l-2 hover:rounded-lg duration-300 border-[#4c1a98] pb-4 hover:border-none  max-w-sm">
-        <div className="relative h-96 w-full">
+        <div className="relative h-72 ">
           <Image
             layout="fill"
             objectFit="cover"
