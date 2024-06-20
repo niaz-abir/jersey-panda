@@ -208,7 +208,7 @@ export default function Jersey() {
   ];
   return (
     <section className="bg-black">
-      <div className="flex justify-center items-center p-4 my-6 mt-16 mb-20">
+      <div className="flex lg:flex-row flex-col justify-center items-center p-4 my-6 mt-16 mb-20">
         <div className="relative p-3 border border-[#1c1c22] rounded-lg w-full max-w-lg">
           <input
             type="text"
