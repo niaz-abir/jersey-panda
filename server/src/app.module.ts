@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma.service';
 import { JerseyModule } from './jersey/jersey.module';
+import { CustomJerseyModule } from './custom-jersey/custom-jersey.module';
 
 @Module({
-  imports: [JerseyModule],
+  imports: [JerseyModule, CustomJerseyModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
