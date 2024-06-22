@@ -5,6 +5,7 @@ export const createJerseySchema = z.object({
   picture: z.string(),
   size: z.any(),
   color: z.string(),
+  category: z.enum(['CLUB', 'NATIONAL']),
   orginalPrice: z.number(),
   discountPrice: z.number(),
 });
