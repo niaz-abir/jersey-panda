@@ -1,12 +1,10 @@
+import JerseyCard from "@/components/card/jerseyCard";
 import React from "react";
-import JerseyCard from "./card/jerseyCard";
-import { VscJersey } from "react-icons/vsc";
-import { IoShirtSharp } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
+import { IoShirtSharp } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import Link from "next/link";
 
-export default function Jersey() {
+const Jersey = () => {
   const allJersey = [
     {
       id: 1,
@@ -244,18 +242,12 @@ export default function Jersey() {
       </div>
 
       <div className="grid grid-cols-1 justify-center lg:grid-cols-3 gap-4 ml-0 p-4 lg:ml-6">
-        {allJersey?.slice(0, 20).map((jersey) => (
+        {allJersey?.map((jersey) => (
           <JerseyCard key={jersey?.id} jersey={jersey} />
         ))}
       </div>
-      <div className="flex justify-center">
-        <Link href="jersey">
-          <button className="flex gap-2 items-center rounded-md btn bg-[#50278b] text-[20px]  border-[#50278b] hover:bg-transparent hover:border-2 hover:border-[#50278b] text-white font-bold">
-            All Jersey
-            <IoShirtSharp />
-          </button>
-        </Link>
-      </div>
     </section>
   );
-}
+};
+
+export default Jersey;
