@@ -28,7 +28,7 @@ const Navbar = () => {
                 href="jersey"
                 className="text-[18px] font-semibold hover:bg-[#8057be] mt-2  border-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
               >
-                jersey
+                Jersey
               </Link>
             </li>
             <li>
@@ -36,7 +36,7 @@ const Navbar = () => {
                 href="custom-jersey"
                 className="text-[18px] font-semibold hover:bg-[#8057be] mt-2   border-2 border-[#8057be] rounded-sm text-white w-40 duration-300"
               >
-                Custom jersey
+                Custom Jersey
               </Link>
             </li>
             <li>
@@ -71,7 +71,7 @@ const Navbar = () => {
               href="jersey"
               className="text-[18px] font-semibold hover:bg-[#8057be]  border-l-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
             >
-              jersey
+              Jersey
             </Link>
           </li>
           <li>
@@ -79,7 +79,7 @@ const Navbar = () => {
               href="custom-jersey"
               className="text-[18px] font-semibold hover:bg-[#8057be]    border-l-2 border-[#8057be] rounded-sm text-white w-40 duration-300"
             >
-              Custom jersey
+              Custom Jersey
             </Link>
           </li>
           <li>
