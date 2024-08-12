@@ -1,14 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { Jersey } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class JerseyService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createJerseyData: Jersey) {
+  async create(data: Prisma.JerseyCreateInput) {
     const jersey = await this.prisma.jersey.create({
-      data: createJerseyData,
+      data,
     });
 
     return jersey;
@@ -26,19 +26,43 @@ export class JerseyService {
       },
     });
 
+    if (!jersey) {
+      throw new HttpException('Jersey not found!', 404);
+    }
+
     return jersey;
   }
 
-  async update(id: string, updateJerseyData: Partial<Jersey>) {
+  async update(id: string, data: Prisma.JerseyUpdateInput) {
+    const jersey = await this.prisma.jersey.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!jersey) {
+      throw new HttpException('Jersey not found!', 404);
+    }
+
     const result = await this.prisma.jersey.update({
       where: { id },
-      data: updateJerseyData,
+      data,
     });
 
     return result;
   }
 
   async remove(id: string) {
+    const jersey = await this.prisma.jersey.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!jersey) {
+      throw new HttpException('Jersey not found!', 404);
+    }
+
     const deletedJersey = await this.prisma.jersey.update({
       where: { id },
       data: {

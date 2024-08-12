@@ -7,12 +7,13 @@ import {
   Param,
   Delete,
   UsePipes,
+  HttpStatus,
 } from '@nestjs/common';
 import { JerseyService } from './jersey.service';
-import { createJerseySchema } from './dto/create-jersey.dto';
-import { Jersey } from '@prisma/client';
+import { CreateJerseyDto, createJerseySchema } from './dto/create-jersey.dto';
 import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
-import { updateJerseySchema } from './dto/update-jersey.dto';
+import { UpdateJerseyDto, updateJerseySchema } from './dto/update-jersey.dto';
+import GenerateResponse from 'src/utils/GenerateResponse';
 
 @Controller('jerseys')
 export class JerseyController {
@@ -20,8 +21,15 @@ export class JerseyController {
 
   @Post()
   @UsePipes(new ZodValidationPipe(createJerseySchema))
-  create(@Body() createJerseyData: Jersey) {
-    return this.jerseyService.create(createJerseyData);
+  async create(@Body() createJerseyDto: CreateJerseyDto) {
+    const result = await this.jerseyService.create(createJerseyDto);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.CREATED,
+      'Jersey is created successfully.',
+      result,
+    );
   }
 
   @Get()
@@ -38,9 +46,9 @@ export class JerseyController {
   update(
     @Param('id') id: string,
     @Body(new ZodValidationPipe(updateJerseySchema))
-    updateJerseyData: Partial<Jersey>,
+    updateJerseyDto: UpdateJerseyDto,
   ) {
-    return this.jerseyService.update(id, updateJerseyData);
+    return this.jerseyService.update(id, updateJerseyDto);
   }
 
   @Delete(':id')
