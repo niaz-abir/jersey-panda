@@ -8,10 +8,11 @@ export type TGallery = {
 export default function GalleryCard({ gallery }: { gallery: TGallery }) {
   const { image, secondImage } = gallery;
   return (
-    <div>
+    <div className="p-4">
       <div className="flex justify-end gap-3 mb-2">
-        <button className="btn border-none bg-green-500">Edit</button>
-        <button className="btn border-none bg-red-500">Delete</button>
+        <button className="btn border-none bg-red-500 text-white text-2xl">
+          Delete
+        </button>
       </div>
       <div className="diff aspect-[16/9]">
         <div className="diff-item-1">

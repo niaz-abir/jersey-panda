@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Exo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-// const inter = Inter({ subsets: ["latin"] });
+const exo = Exo({ subsets: ["latin"], weight: ["400", "700"] });
 import { Imprima } from "next/font/google";
 
 const roboto = Imprima({
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={exo.className}>
         <Navbar />
         {children}
       </body>

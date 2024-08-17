@@ -1,97 +1,128 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { GiUbisoftSun } from "react-icons/gi";
+import { MdOutlinePermPhoneMsg } from "react-icons/md";
+import { FaMailchimp, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
-import React from "react";
-import { FaBars } from "react-icons/fa";
-import { SiFoodpanda } from "react-icons/si";
+import { AiOutlineMenuFold } from "react-icons/ai";
+import { SiFoodpanda, SiMailchimp } from "react-icons/si";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="navbar max-w-7xl mx-auto ">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <FaBars className="text-[#8057be]" />
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
+    <div>
+      <nav className="mt-2">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <h1 className="flex gap-2 items-center text-2xl bg-[#313f4f] p-2 rounded-md">
+            <SiFoodpanda size={35} color="#308fca" />
+            <Link href="/">Jersey Panda</Link>
+          </h1>
+          <button
+            onClick={toggleMenu}
+            data-collapse-toggle="navbar-default"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm   rounded-lg md:hidden text-[24px] focus:outline-none "
+            aria-controls="navbar-default"
+            aria-expanded={isMenuOpen}
           >
-            <li>
-              <Link
-                href="about"
-                className="text-[18px] font-semibold hover:bg-[#8057be] border-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
-              >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="jersey"
-                className="text-[18px] font-semibold hover:bg-[#8057be] mt-2  border-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
-              >
-                Jersey
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="custom-jersey"
-                className="text-[18px] font-semibold hover:bg-[#8057be] mt-2   border-2 border-[#8057be] rounded-sm text-white w-40 duration-300"
-              >
-                Custom Jersey
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="gallery"
-                className="text-[18px] font-semibold hover:bg-[#8057be] mt-2  border-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
-              >
-                Gallery
-              </Link>
-            </li>
-          </ul>
+            <span className="sr-only">Open main menu</span>
+            <AiOutlineMenuFold size={40} />
+          </button>
+          <div
+            className={`${
+              isMenuOpen ? "block" : "hidden"
+            } w-full md:block md:w-auto`}
+            id="navbar-default"
+          >
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 text-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li>
+                <Link
+                  href="about"
+                  className="block py-2 px-3 text-[20px] lg:w-full hover:bg-[#313f4f] w-36 text-white rounded md:border-0"
+                >
+                  About us
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block py-2 px-3 text-[20px] lg:w-full hover:bg-[#313f4f] w-36 text-white rounded md:border-0"
+                >
+                  jersey
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block py-2 px-3 text-[20px] lg:w-full hover:bg-[#313f4f]  w-48 text-white rounded md:border-0"
+                >
+                  Custom-jersey
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="gallery"
+                  className="block py-2 px-3 text-[20px] lg:w-full hover:bg-[#313f4f] w-36 text-white rounded md:border-0"
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="contact-us"
+                  className="block py-2 px-3 text-[20px] lg:w-full hover:bg-[#313f4f] w-48 text-white rounded md:border-0"
+                >
+                  Football Item
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="tel:+880263627"
+                  className="p-2 flex items-center gap-2 text-[20px] lg:w-full bg-[#1982C4] w-44 text-white rounded md:border-0"
+                >
+                  <MdOutlinePermPhoneMsg /> 01819575345
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <Link
-          href="/"
-          className="btn btn-ghost text-2xl bg-[#1c1c22] font-bold text-[#8057be] flex gap-4 items-center"
-        >
-          Jersey Panda <SiFoodpanda className=" text-[#8057be]" />
-        </Link>
-      </div>
-      <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal space-x-2 px-1">
-          <li>
-            <Link
-              href="about"
-              className="text-[18px]  font-semibold hover:bg-[#8057be] border-l-2 border-[#8057be] rounded-sm text-white w-32 duration-300 "
-            >
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="jersey"
-              className="text-[18px] font-semibold hover:bg-[#8057be]  border-l-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
-            >
-              Jersey
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="custom-jersey"
-              className="text-[18px] font-semibold hover:bg-[#8057be]    border-l-2 border-[#8057be] rounded-sm text-white w-40 duration-300"
-            >
-              Custom Jersey
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="gallery"
-              className="text-[18px] font-semibold hover:bg-[#8057be]   border-l-2 border-[#8057be] rounded-sm text-white w-32 duration-300"
-            >
-              Gallery
-            </Link>
-          </li>
-        </ul>
-      </div>
+      </nav>
+      {isScrolled && (
+        <div className="fixed bottom-10 right-10 z-50">
+          <a
+            href="https://wa.me/+880 1845-692696"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" p-3 rounded-full shadow-lg text-white"
+          >
+            <FaWhatsapp
+              size={50}
+              className="p-2 text-[#25D366] bg-[#313f4f] rounded-md"
+            />
+          </a>
+        </div>
+      )}
     </div>
   );
 };

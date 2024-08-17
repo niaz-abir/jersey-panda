@@ -1,4 +1,5 @@
 import GalleryCard from "@/components/Admin/GalleryCard";
+import Link from "next/link";
 import React from "react";
 
 const AllGallery = () => {
@@ -68,9 +69,22 @@ const AllGallery = () => {
     },
   ];
   return (
-    <section className="bg-black pb-14 pt-8">
-      <h1 className="font-bold pb-6 pt-4 text-2xl pl-8">Moment With people</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ml-6 mr-6">
+    <section className="max-w-7xl mx-auto h-auto pb-14 pt-8">
+      <div className="flex justify-between items-center mb-2">
+        <div>
+          <h1 className="font-bold text-2xl pb-4 pt-8 pl-10">
+            Moment With people
+          </h1>
+        </div>
+        <div>
+          <Link href="/admin/add-gallery">
+            <button className="btn mr-8 bg-green-500 text-black  text-2xl border-none font-bold">
+              Add Gallery
+            </button>
+          </Link>
+        </div>
+      </div>
+      <div className="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-4 ">
         {allGallery?.map((gallery) => (
           <GalleryCard key={gallery?.id} gallery={gallery} />
         ))}

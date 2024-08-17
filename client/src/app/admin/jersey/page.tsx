@@ -1,10 +1,11 @@
 import React from "react";
-import JerseyCard from "./card/jerseyCard";
+
 import { VscJersey } from "react-icons/vsc";
 import { IoShirtSharp } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Link from "next/link";
+import JerseyCard from "@/components/Admin/jerseyCard";
 
 export default function Jersey() {
   const allJersey = [
@@ -208,41 +209,17 @@ export default function Jersey() {
     },
   ];
   return (
-    <section className="">
-      <div className="flex lg:flex-row flex-col justify-center items-center p-4 my-6 mt-16 mb-20">
-        <div className="relative p-3 border border-[#313f4f] rounded-lg w-full max-w-lg">
-          <input
-            type="text"
-            className="rounded-md p-3 w-full bg-[#313f4f] focus:outline-none"
-            placeholder="Search your jersey"
-          />
-
-          <button
-            type="submit"
-            className="absolute bg-[#313f4f]  right-6 top-6"
-          >
-            <IoMdSearch className="text-2xl" />
-          </button>
+    <section className="max-w-7xl mx-auto">
+      <div className="flex justify-between items-center mb-2">
+        <div>
+          <h1 className="font-bold text-2xl pb-4 pt-8 pl-10">All jersey</h1>
         </div>
-        <div className="dropdown dropdown-bottom">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn m-1 flex items-center gap-2 h-14 text-[20px] bg-[#313f4f] text-white border-none hover:bg-[#1c1c22]"
-          >
-            All Jersey <RiArrowDropDownLine className="text-2xl" />
-          </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
-          >
-            <li>
-              <a className="text-[18px]  hover:bg-[#1c1c22]">Club</a>
-            </li>
-            <li>
-              <a className="text-[18px]  hover:bg-[#1c1c22]">National</a>
-            </li>
-          </ul>
+        <div>
+          <Link href="/admin/add-jersey">
+            <button className="btn mr-8 bg-green-500 text-black  text-2xl border-none font-bold">
+              Add Jersey
+            </button>
+          </Link>
         </div>
       </div>
 

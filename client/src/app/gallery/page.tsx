@@ -68,7 +68,7 @@ const Gallery = () => {
     },
   ];
   return (
-    <section className="bg-black pb-14 pt-8">
+    <section className=" pb-14 max-w-7xl mx-auto pt-8">
       <h1 className="font-bold pb-6 pt-4 text-2xl pl-8">Moment With people</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ml-6 mr-6">
         {allGallery?.map((gallery) => (

@@ -2,7 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const AddGallery = () => {
+const AddCustomizeJersey = () => {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,6 @@ const AddGallery = () => {
         .then((imgData) => {
           const galleyData = {
             image: imgData.data.url,
-            secondImage: imgData.data.url,
           };
           console.log(galleyData);
 
@@ -38,11 +37,11 @@ const AddGallery = () => {
   };
 
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center mt-8">
       <div className="relative m-10 rounded-lg shadow">
-        <div className="ml-2 lg:ml-8">
-          <h1 className="p-2 text-3xl font-bold text-center text-[#1982C4]">
-            Add Your gallery
+        <div className="ml-2 lg:ml-2">
+          <h1 className="p-2 text-3xl font-bold  text-center text-[#1982C4]">
+            Add Customize jersey
           </h1>
         </div>
         <div className="space-y-6 p-6">
@@ -65,21 +64,6 @@ const AddGallery = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-4">
-              <div>
-                <label className="mb-2 flex items-center gap-3 text-[15px] font-medium text-white">
-                  secondImage
-                </label>
-
-                <input
-                  {...register("secondImage", { required: true })}
-                  type="file"
-                  name="image"
-                  placeholder="image"
-                  className="input input-bordered bg-gray-800 w-full max-w-xs"
-                />
-              </div>
-            </div>
             <div>
               <button
                 type="submit"
@@ -95,4 +79,4 @@ const AddGallery = () => {
   );
 };
 
-export default AddGallery;
+export default AddCustomizeJersey;

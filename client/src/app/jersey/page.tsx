@@ -206,16 +206,19 @@ const Jersey = () => {
     },
   ];
   return (
-    <section className="bg-black">
+    <section className="max-w-7xl mx-auto">
       <div className="flex lg:flex-row flex-col justify-center items-center p-4 my-6 mt-16 mb-20">
-        <div className="relative p-3 border border-[#1c1c22] rounded-lg w-full max-w-lg">
+        <div className="relative p-3 border border-[#313f4f]  rounded-lg w-full max-w-lg">
           <input
             type="text"
-            className="rounded-md p-3 w-full bg-[#1c1c22] focus:outline-none"
+            className="rounded-md p-3 w-full bg-[#313f4f] focus:outline-none"
             placeholder="Search your jersey"
           />
 
-          <button type="submit" className="absolute right-6 top-6">
+          <button
+            type="submit"
+            className="absolute bg-[#313f4f]  right-6 top-6"
+          >
             <IoMdSearch className="text-2xl" />
           </button>
         </div>
@@ -223,7 +226,7 @@ const Jersey = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn m-1 flex items-center gap-2 h-14 text-[20px] bg-[#1c1c22] text-white border-none hover:bg-[#1c1c22]"
+            className="btn m-1 flex items-center gap-2 h-14 text-[20px] bg-[#313f4f]  text-white border-none hover:bg-[#1c1c22]"
           >
             All Jersey <RiArrowDropDownLine className="text-2xl" />
           </div>

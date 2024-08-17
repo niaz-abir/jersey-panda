@@ -78,7 +78,7 @@ export default function Testimonial() {
     },
   ];
   return (
-    <section className="bg-black text-white pt-14 pb-14">
+    <section className=" text-white pt-14 pb-14">
       <div>
         <h1 className="text-center font-bold pb-6 pt-4 text-[20px] lg:text-2xl">
           All Testimonial from people

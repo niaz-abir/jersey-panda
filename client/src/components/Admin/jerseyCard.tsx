@@ -9,6 +9,11 @@ const JerseyCard = ({ jersey }) => {
 
   return (
     <div>
+      <div className="flex justify-end gap-3 mb-2">
+        <button className="btn border-none bg-red-500 text-white text-2xl">
+          Delete
+        </button>
+      </div>
       <div className="bg-[#15222f] mb-8 hover:rounded-lg duration-300  pb-4 hover:border-none  max-w-sm">
         <div className="relative ">
           <img src={image} alt="Product Image" />

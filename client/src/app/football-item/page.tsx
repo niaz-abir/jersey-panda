@@ -1,7 +1,7 @@
-import CustomCard from "@/components/card/customCard";
+import FootballItemCard from "@/components/card/footballItemCard";
 import React from "react";
 
-const CustomJersey = () => {
+const FootballItem = () => {
   const AllCustom = [
     {
       id: 1,
@@ -106,14 +106,14 @@ const CustomJersey = () => {
   ];
   return (
     <section className="max-w-7xl mx-auto pb-8">
-      <h1 className="font-bold text-2xl pb-8 pt-8 pl-10">All Custom Jersey:</h1>
+      <h1 className="font-bold text-2xl pb-8 pt-8 pl-10">All Football Item:</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ml-8 mr-8">
-        {AllCustom?.map((custom) => (
-          <CustomCard key={custom?.id} custom={custom} />
+        {AllCustom?.map((item) => (
+          <FootballItemCard key={item?.id} item={item} />
         ))}
       </div>
     </section>
   );
 };
 
-export default CustomJersey;
+export default FootballItem;

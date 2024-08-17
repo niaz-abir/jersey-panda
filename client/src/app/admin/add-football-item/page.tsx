@@ -2,7 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const AddGallery = () => {
+const AddFootballItem = () => {
   const {
     register,
     handleSubmit,
@@ -42,13 +42,13 @@ const AddGallery = () => {
       <div className="relative m-10 rounded-lg shadow">
         <div className="ml-2 lg:ml-8">
           <h1 className="p-2 text-3xl font-bold text-center text-[#1982C4]">
-            Add Your gallery
+            Add Football Item
           </h1>
         </div>
         <div className="space-y-6 p-6">
           <form
             action="#"
-            className="rounded-md p-6 shadow-sm shadow-[#1982C4]"
+            className="rounded-md p-6 shadow-sm shadow-[#1982C4] "
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col gap-4 mb-2">
@@ -65,21 +65,33 @@ const AddGallery = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+            {/* <div className="flex flex-col gap-2 ">
+              <label className=" flex items-center gap-3 text-[15px] font-medium text-white">
+                category
+              </label>
+              <select className="select select-bordered bg-gray-800  w-full max-w-xs">
+                <option disabled selected>
+                  category
+                </option>
+                <option>Han Solo</option>
+                <option>Greedo</option>
+              </select>
+            </div> */}
+            <div className="flex flex-col gap-4 mb-2">
               <div>
                 <label className="mb-2 flex items-center gap-3 text-[15px] font-medium text-white">
-                  secondImage
+                  price
                 </label>
-
                 <input
-                  {...register("secondImage", { required: true })}
-                  type="file"
-                  name="image"
-                  placeholder="image"
+                  {...register("price", { required: true })}
+                  type="text"
+                  name="price"
+                  placeholder="text"
                   className="input input-bordered bg-gray-800 w-full max-w-xs"
                 />
               </div>
             </div>
+
             <div>
               <button
                 type="submit"
@@ -95,4 +107,4 @@ const AddGallery = () => {
   );
 };
 
-export default AddGallery;
+export default AddFootballItem;
