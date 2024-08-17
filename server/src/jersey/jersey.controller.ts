@@ -33,26 +33,54 @@ export class JerseyController {
   }
 
   @Get()
-  findAll() {
-    return this.jerseyService.findAll();
+  async findAll() {
+    const result = await this.jerseyService.findAll();
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Jerseys are retrieved successfully.',
+      result,
+    );
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jerseyService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const result = await this.jerseyService.findOne(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Jersey is retrieved successfully.',
+      result,
+    );
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body(new ZodValidationPipe(updateJerseySchema))
     updateJerseyDto: UpdateJerseyDto,
   ) {
-    return this.jerseyService.update(id, updateJerseyDto);
+    const result = await this.jerseyService.update(id, updateJerseyDto);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Jersey is updated successfully.',
+      result,
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.jerseyService.remove(id);
+  async remove(@Param('id') id: string) {
+    const result = await this.jerseyService.remove(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Jersey is deleted successfully.',
+      result,
+    );
   }
 }

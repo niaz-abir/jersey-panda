@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 export const createJerseySchema = z
@@ -13,4 +12,4 @@ export const createJerseySchema = z
   })
   .strict();
 
-export type CreateJerseyDto = Prisma.JerseyCreateInput;
+export type CreateJerseyDto = z.infer<typeof createJerseySchema>;

@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 export const updateJerseySchema = z.object({
@@ -10,4 +9,4 @@ export const updateJerseySchema = z.object({
   discountPrice: z.number().optional(),
 });
 
-export type UpdateJerseyDto = Prisma.JerseyUpdateInput;
+export type UpdateJerseyDto = z.infer<typeof updateJerseySchema>;
