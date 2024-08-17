@@ -7,43 +7,91 @@ import {
   Param,
   Delete,
   UsePipes,
+  HttpStatus,
 } from '@nestjs/common';
 import { CustomJerseyService } from './custom-jersey.service';
-import { createCustomJerseySchema } from './dto/create-custom-jersey.dto';
-import { updateCustomJerseySchema } from './dto/update-custom-jersey.dto';
+import {
+  CreateCustomJerseyDto,
+  createCustomJerseySchema,
+} from './dto/create-custom-jersey.dto';
+import {
+  UpdateCustomJerseyDto,
+  updateCustomJerseySchema,
+} from './dto/update-custom-jersey.dto';
 import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
+import GenerateResponse from 'src/utils/GenerateResponse';
 
 @Controller('custom-jerseys')
 export class CustomJerseyController {
   constructor(private readonly customJerseyService: CustomJerseyService) {}
 
-  // @Post()
-  // @UsePipes(new ZodValidationPipe(createCustomJerseySchema))
-  // create(@Body() createCustomJerseyDate: CustomJersey) {
-  //   return this.customJerseyService.create(createCustomJerseyDate);
-  // }
+  @Post()
+  @UsePipes(new ZodValidationPipe(createCustomJerseySchema))
+  async create(@Body() createCustomJerseyDate: CreateCustomJerseyDto) {
+    const result = await this.customJerseyService.create(
+      createCustomJerseyDate,
+    );
 
-  // @Get()
-  // findAll() {
-  //   return this.customJerseyService.findAll();
-  // }
+    return new GenerateResponse(
+      true,
+      HttpStatus.CREATED,
+      'Custom Jersey is created successfully.',
+      result,
+    );
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.customJerseyService.findOne(id);
-  // }
+  @Get()
+  async findAll() {
+    const result = await this.customJerseyService.findAll();
 
-  // @Patch(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body(new ZodValidationPipe(updateCustomJerseySchema))
-  //   updateCustomJerseyData: Partial<CustomJersey>,
-  // ) {
-  //   return this.customJerseyService.update(id, updateCustomJerseyData);
-  // }
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Custom Jerseys are retrieved successfully.',
+      result,
+    );
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.customJerseyService.remove(id);
-  // }
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const result = await this.customJerseyService.findOne(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Custom Jersey is retrieved successfully.',
+      result,
+    );
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(updateCustomJerseySchema))
+    updateCustomJerseyData: UpdateCustomJerseyDto,
+  ) {
+    const result = await this.customJerseyService.update(
+      id,
+      updateCustomJerseyData,
+    );
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Custom Jersey is upated successfully.',
+      result,
+    );
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    const result = await this.customJerseyService.remove(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Custom Jersey is deleted successfully.',
+      result,
+    );
+  }
 }

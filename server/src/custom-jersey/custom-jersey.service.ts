@@ -1,40 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { CustomJersey } from 'src/schemas/custom-jersey.schema';
+import { Model } from 'mongoose';
+import { CreateCustomJerseyDto } from './dto/create-custom-jersey.dto';
+import { UpdateCustomJerseyDto } from './dto/update-custom-jersey.dto';
 
 @Injectable()
 export class CustomJerseyService {
-  // constructor(private readonly prisma: PrismaService) {}
-  // async create(createCustomJerseyDate: CustomJersey) {
-  //   const customJersey = await this.prisma.customJersey.create({
-  //     data: createCustomJerseyDate,
-  //   });
-  //   return customJersey;
-  // }
-  // async findAll() {
-  //   const customJerseys = await this.prisma.customJersey.findMany();
-  //   return customJerseys;
-  // }
-  // async findOne(id: string) {
-  //   const customJersey = await this.prisma.customJersey.findUnique({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-  //   return customJersey;
-  // }
-  // async update(id: string, updateCustomJerseyData: Partial<CustomJersey>) {
-  //   const result = await this.prisma.customJersey.update({
-  //     where: { id },
-  //     data: updateCustomJerseyData,
-  //   });
-  //   return result;
-  // }
-  // async remove(id: string) {
-  //   const deletedCustomJersey = await this.prisma.customJersey.update({
-  //     where: { id },
-  //     data: {
-  //       deletedAt: new Date(),
-  //     },
-  //   });
-  //   return deletedCustomJersey;
-  // }
+  constructor(
+    @InjectModel(CustomJersey.name)
+    private customJerseyModel: Model<CustomJersey>,
+  ) {}
+
+  async create(data: CreateCustomJerseyDto) {
+    const customJersey = new this.customJerseyModel(data);
+    return await customJersey.save();
+  }
+
+  async findAll() {
+    const customJerseys = await this.customJerseyModel.find();
+    return customJerseys;
+  }
+
+  async findOne(id: string) {
+    const customJersey = await this.customJerseyModel.findById(id);
+
+    if (!customJersey) {
+      throw new HttpException('Custom Jersey not found!', 404);
+    }
+
+    return customJersey;
+  }
+
+  async update(id: string, data: UpdateCustomJerseyDto) {
+    const customJersey = await this.customJerseyModel.findById(id);
+
+    if (!customJersey) {
+      throw new HttpException('Custom Jersey not found!', 404);
+    }
+
+    const result = await this.customJerseyModel.findOneAndUpdate(
+      { _id: id },
+      data,
+      {
+        new: true,
+      },
+    );
+
+    return result;
+  }
+
+  async remove(id: string) {
+    const customJersey = await this.customJerseyModel.findById(id);
+
+    if (!customJersey) {
+      throw new HttpException('Custom Jersey not found!', 404);
+    }
+
+    const deletedCustomJersey =
+      await this.customJerseyModel.findByIdAndDelete(id);
+
+    return deletedCustomJersey;
+  }
 }
