@@ -8,6 +8,7 @@ import {
   Delete,
   UsePipes,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { FootballItemService } from './football-item.service';
 import {
@@ -20,7 +21,9 @@ import {
 } from './dto/update-football-item.dto';
 import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
 import GenerateResponse from 'src/utils/GenerateResponse';
+import { CustomExceptionsFilter } from 'src/exceptions/CustomExceptionFilter';
 
+@UseFilters(CustomExceptionsFilter)
 @Controller('football-items')
 export class FootballItemController {
   constructor(private readonly footballItemService: FootballItemService) {}

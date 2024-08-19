@@ -8,6 +8,7 @@ import {
   Delete,
   UsePipes,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { ReviewGalleryService } from './review-gallery.service';
 import {
@@ -17,7 +18,9 @@ import {
 import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
 import GenerateResponse from 'src/utils/GenerateResponse';
 import { UpdateReviewGalleryDto } from './dto/update-review-gallery.dto';
+import { CustomExceptionsFilter } from 'src/exceptions/CustomExceptionFilter';
 
+@UseFilters(CustomExceptionsFilter)
 @Controller('reviews-gallery')
 export class ReviewGalleryController {
   constructor(private readonly reviewGalleryService: ReviewGalleryService) {}

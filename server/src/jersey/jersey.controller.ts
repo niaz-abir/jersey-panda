@@ -8,13 +8,16 @@ import {
   Delete,
   UsePipes,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { JerseyService } from './jersey.service';
 import { CreateJerseyDto, createJerseySchema } from './dto/create-jersey.dto';
 import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
 import { UpdateJerseyDto, updateJerseySchema } from './dto/update-jersey.dto';
 import GenerateResponse from 'src/utils/GenerateResponse';
+import { CustomExceptionsFilter } from 'src/exceptions/CustomExceptionFilter';
 
+@UseFilters(CustomExceptionsFilter)
 @Controller('jerseys')
 export class JerseyController {
   constructor(private readonly jerseyService: JerseyService) {}
