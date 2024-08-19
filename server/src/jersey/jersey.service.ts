@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Jersey } from 'src/schemas/jersey.schema';
 import { Model } from 'mongoose';
 import { CreateJerseyDto } from './dto/create-jersey.dto';
-import { UpdateCustomJerseyDto } from 'src/custom-jersey/dto/update-custom-jersey.dto';
+import { UpdateJerseyDto } from './dto/update-jersey.dto';
 
 @Injectable()
 export class JerseyService {
@@ -31,7 +31,7 @@ export class JerseyService {
     return jersey;
   }
 
-  async update(id: string, data: UpdateCustomJerseyDto) {
+  async update(id: string, data: UpdateJerseyDto) {
     const jersey = await this.jerseyModel.findById(id);
 
     if (!jersey) {

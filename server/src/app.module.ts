@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { JerseyModule } from './jersey/jersey.module';
 import { CustomJerseyModule } from './custom-jersey/custom-jersey.module';
 import { ReviewGalleryModule } from './review-gallery/review-gallery.module';
+import { FootballItemModule } from './football-item/football-item.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ReviewGalleryModule } from './review-gallery/review-gallery.module';
     JerseyModule,
     CustomJerseyModule,
     ReviewGalleryModule,
+    FootballItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],

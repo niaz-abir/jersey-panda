@@ -1,9 +1,7 @@
 import { z } from 'zod';
 
 export const createCustomJerseySchema = z.object({
-  picture: z.string(),
-  title: z.string(),
-  color: z.string(),
+  image: z.string(),
 });
 
 export type CreateCustomJerseyDto = z.infer<typeof createCustomJerseySchema>;

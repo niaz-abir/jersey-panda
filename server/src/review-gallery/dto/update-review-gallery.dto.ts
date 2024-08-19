@@ -5,4 +5,4 @@ export const updateReviewGallerySchema = z.object({
   secondImage: z.string().optional(),
 });
 
-export type CreateReviewGalleryDto = z.infer<typeof updateReviewGallerySchema>;
+export type UpdateReviewGalleryDto = z.infer<typeof updateReviewGallerySchema>;

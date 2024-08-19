@@ -2,12 +2,11 @@ import { z } from 'zod';
 
 export const createJerseySchema = z
   .object({
-    title: z.string(),
-    picture: z.string(),
-    size: z.array(z.string()),
-    color: z.string(),
     category: z.enum(['CLUB', 'NATIONAL']),
-    orginalPrice: z.number(),
+    name: z.string(),
+    image: z.string(),
+    size: z.array(z.string()),
+    price: z.number(),
     discountPrice: z.number(),
   })
   .strict();
