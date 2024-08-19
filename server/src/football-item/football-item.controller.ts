@@ -1,34 +1,95 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UsePipes,
+  HttpStatus,
+} from '@nestjs/common';
 import { FootballItemService } from './football-item.service';
-import { CreateFootballItemDto } from './dto/create-football-item.dto';
-import { UpdateFootballItemDto } from './dto/update-football-item.dto';
+import {
+  CreateFootballItemDto,
+  createFootballItemSchema,
+} from './dto/create-football-item.dto';
+import {
+  UpdateFootballItemDto,
+  updateFootballItemSchema,
+} from './dto/update-football-item.dto';
+import { ZodValidationPipe } from 'src/pipes/zodValidationPipe';
+import GenerateResponse from 'src/utils/GenerateResponse';
 
-@Controller('football-item')
+@Controller('football-items')
 export class FootballItemController {
   constructor(private readonly footballItemService: FootballItemService) {}
 
   @Post()
-  create(@Body() createFootballItemDto: CreateFootballItemDto) {
-    return this.footballItemService.create(createFootballItemDto);
+  @UsePipes(new ZodValidationPipe(createFootballItemSchema))
+  async create(@Body() createFootballItemDto: CreateFootballItemDto) {
+    const result = await this.footballItemService.create(createFootballItemDto);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.CREATED,
+      'Football Item is created successfully.',
+      result,
+    );
   }
 
   @Get()
-  findAll() {
-    return this.footballItemService.findAll();
+  async findAll() {
+    const result = await this.footballItemService.findAll();
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Football Items are retrieved successfully.',
+      result,
+    );
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.footballItemService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const result = await this.footballItemService.findOne(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Football Item is retrieved successfully.',
+      result,
+    );
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFootballItemDto: UpdateFootballItemDto) {
-    return this.footballItemService.update(+id, updateFootballItemDto);
+  async update(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(updateFootballItemSchema))
+    updateFootballItemDto: UpdateFootballItemDto,
+  ) {
+    const result = await this.footballItemService.update(
+      id,
+      updateFootballItemDto,
+    );
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Football Item is updated successfully.',
+      result,
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.footballItemService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const result = await this.footballItemService.remove(id);
+
+    return new GenerateResponse(
+      true,
+      HttpStatus.OK,
+      'Football Item is deleted successfully.',
+      result,
+    );
   }
 }

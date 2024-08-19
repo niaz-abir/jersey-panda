@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 export const updateFootballItemSchema = z.object({
-  name: z.string(),
-  image: z.string(),
-  price: z.number(),
+  name: z.string().optional(),
+  image: z.string().optional(),
+  price: z.number().optional(),
 });
 
 export type UpdateFootballItemDto = z.infer<typeof updateFootballItemSchema>;
